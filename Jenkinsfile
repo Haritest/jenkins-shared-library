@@ -1,8 +1,8 @@
 #!groovy
-node (master)
+node {
 
-{
-  stage(test)
+
+  stage('test')
   {
   sh 'echo "test"'
   }
