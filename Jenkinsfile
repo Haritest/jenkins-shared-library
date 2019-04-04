@@ -4,7 +4,7 @@ node {
 
   stage('test')
   {
-  sh 'echo "test"'
+  sh 'echo $my_home'
   }
 
 }
