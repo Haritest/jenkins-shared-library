@@ -1,6 +1,10 @@
 #!groovy
-node {
+node ('master'){
 
+  stage('checkout')
+  {
+    checkout scm
+  }
 
   stage('test')
   {
