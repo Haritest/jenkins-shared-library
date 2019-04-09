@@ -14,7 +14,7 @@ sh 'cat env.txt'
   }
   stage('shellscript')
   {
-   sh 'bash ./bye.sh'
+   sh 'ansible-vault view passwd.yml --vault-password-file=secrets'
   }
 
 }
