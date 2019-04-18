@@ -30,6 +30,15 @@ sh 'cat env.txt'
    sh 'ansible-playbook --vault-id /home/hari/ansible/testpro/secrets /home/hari/ansible/testpro/testdir.yml'
   }
 
+  stage('colour') {
+
+    ansiblePlaybook(
+        playbook: '/home/hari/ansible/testpro/testdir.yml',
+        vaultCredentialsId: '/home/hari/ansible/testpro/secrets',
+        colorized: true)
+
+}
+
 }
 }
 catch (err) {
