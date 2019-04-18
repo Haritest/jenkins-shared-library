@@ -34,7 +34,7 @@ sh 'cat env.txt'
 
     ansiblePlaybook(
         playbook: '/home/hari/ansible/testpro/testdir.yml',
-        vaultCredentialsId: '/home/hari/ansible/testpro/secrets',
+        extras: '--vault-id /home/hari/ansible/testpro/secrets',
         colorized: true)
 
 }
