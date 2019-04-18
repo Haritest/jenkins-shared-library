@@ -20,7 +20,7 @@ sh 'cat env.txt'
   }
 
   stage('ansible-test') {
-   sh 'ansible-playbook --vault-id secrets testdir.yml'
+   sh 'ansible-playbook --vault-id /home/hari/ansible/testpro/secrets /home/hari/ansible/testpro/testdir.yml'
   }
 
 }
