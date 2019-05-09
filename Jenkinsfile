@@ -1,6 +1,5 @@
 #!groovy
 
-@Library('my-test-library') _
 node ('master') {
  
 try {
