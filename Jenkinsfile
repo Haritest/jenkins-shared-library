@@ -15,6 +15,7 @@ ansiColor('xterm') {
     cleanWs()
     checkout scm
   }
+  @Library('my-test-library')_
 
   stage('test') {
   sh 'echo $my_home'
