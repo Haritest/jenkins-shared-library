@@ -1,64 +1,39 @@
 #!/usr/bin/env groovy
 
 def call() {
-  
- 
-  
+
+
+
 node ('master') {
 
 try {
-        String ANSI_GREEN = "\u001B[32m"
-        String ANSI_NORMAL = "\u001B[0m"
-        String ANSI_BOLD = "\u001B[1m"
-        String ANSI_RED = "\u001B[31m"
-        String ANSI_YELLOW = "\u001B[33m"
 
-ansiColor('xterm') {
-  stage('checkout') {
+ stage('checkout') {
     cleanWs()
-    checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/Haritest/testpro']]])
-  
- 
+    checkout scm  
   }
+   stage("GIT INFO"){
+    echo ":::::::::::GIT_SHORT_COMMIT::::::::::::::::::::::::"
 
-  stage('test-reponame') {
- 
-    sh 'cat $determineRepoName'
-}
-  stage('test') {
-  sh 'echo $my_home'
-    sh 'env > env.txt'
-sh 'cat env.txt'
- sh 'echo $JOB_BASE_NAME'
-   sh 'echo $BRANCH_NAME'
-   sh 'echo $GIT_COMMIT'
+    GIT_SHORT_COMMIT = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
+    //echo in jenkins console
+    echo GIT_SHORT_COMMIT
+    //wanted to send these info to build artifacts, append to any file
+    sh("echo ${GIT_SHORT_COMMIT} > GIT_SHORT_COMMIT")
+
+    //Similar proceed for other git info's 
+    echo ":::::::::::GIT_COMMITTER_EMAIL::::::::::::::::::::::::"
+
+    GIT_COMMITTER_EMAIL = sh(returnStdout: true, script: "git show -s --pretty=%ae").trim()
+    sh("echo ${GIT_COMMITTER_EMAIL} > GIT_COMMITTER_EMAIL-${GIT_COMMITTER_EMAIL}")
+
+
+
+    echo ":::::::::::GIT_COMMITTER_NAME::::::::::::::::::::::::"
+
+    GIT_COMMITTER_NAME = sh(returnStdout: true, script: "git show -s --pretty=%an").trim()
+    sh("echo ${GIT_COMMITTER_NAME} > GIT_COMMITTER_NAME-${GIT_COMMITTER_NAME}")
   }
-  
-  stage('job-name'){
-       echo "${env.JOB_NAME}"
-    echo "${env.BRANCH_NAME}"
-    echo "${env.GIT_COMMIT}"
-  }
-stage('test-new') {
-           echo "Running ${env.JOB_NAME} on ${env.JENKINS_URL}"
-  }  
-  
-  stage('shellscript'){
-   sh 'ansible-vault view passwd.yml --vault-password-file=secrets'
-  }
-
-  stage('ansible-test') {
-   sh 'ansible-playbook --vault-id /home/hari/ansible/testpro/secrets /home/hari/ansible/testpro/testdir.yml'
-  }
-
-  stage('colour') {
-
-    ansiblePlaybook(
-        playbook: '/home/hari/ansible/testpro/testdir.yml',
-        extras: '--vault-id /home/hari/ansible/testpro/secrets',
-        colorized: true)
-
-}
 
 }
 }
@@ -67,4 +42,5 @@ catch (err) {
         throw err
         }
 }
+
 }
