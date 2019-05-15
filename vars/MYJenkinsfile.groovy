@@ -2,8 +2,6 @@
 
 def call() {
 
-
-
 node ('master') {
 
 try {
