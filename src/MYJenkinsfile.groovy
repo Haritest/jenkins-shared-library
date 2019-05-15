@@ -1,3 +1,5 @@
+def call(){
+
 node ('master') {
  
 try {
@@ -43,4 +45,5 @@ catch (err) {
         currentBuild.result = "FAILURE"
         throw err
 	}
+}
 }
