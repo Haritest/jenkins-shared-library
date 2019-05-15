@@ -2,8 +2,6 @@
 
 def call() {
   
-#!groovy
-
 node ('master') {
 
 try {
