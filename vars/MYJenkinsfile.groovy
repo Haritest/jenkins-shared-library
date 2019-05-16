@@ -10,8 +10,8 @@ try {
     cleanWs()
   }
    stage("GIT INFO"){
-     sh "git rev-parse --short HEAD > .git/commit-id"                        
-commit_id = readFile('.git/commit-id')
+     sh "git rev-parse --short HEAD > ./test"                        
+commit_id = readFile('./test')
 
 }
 }
