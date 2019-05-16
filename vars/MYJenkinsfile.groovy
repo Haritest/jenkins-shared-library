@@ -25,7 +25,7 @@ sh 'cat env.txt'
   }
 
 stage('test-new') {
-           echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
+           echo "Running ${env.JOB_NAME} on ${env.JENKINS_URL}"
   }  
   
   stage('shellscript'){
