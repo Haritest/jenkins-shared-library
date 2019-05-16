@@ -10,8 +10,9 @@ try {
     cleanWs()
   }
    stage("GIT INFO"){
-     sh "git rev-parse --short HEAD > ./test"                        
-commit_id = readFile('./test')
+
+gitCommit = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
+sh 'echo ${gitCommit}'
 
 }
 }
