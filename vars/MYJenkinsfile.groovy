@@ -12,10 +12,8 @@ try {
     def commit_hash = sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()
     println("Tag not specified, using the latest commit hash: " + commit_hash)
     env.commit_hash = commit_hash
-    echo "${commit_hash}"
-    sh 'echo "commit_hash"' 
-    sh 'echo $commit_hash'
-    
+ //   echo "${commit_hash}"
+    sh 'echo "commit_hash"'    
   }
    stage("GIT INFO"){
 
