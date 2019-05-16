@@ -25,6 +25,8 @@ sh 'cat env.txt'
   }
 
   stage('shellscript'){
+    sh 'echo ${env.BUILD_ID}'
+    sh 'echo ${env.JOB_BASE_NAME}'
    sh 'ansible-vault view passwd.yml --vault-password-file=secrets'
   }
 
