@@ -17,15 +17,24 @@ ansiColor('xterm') {
     checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/Haritest/testpro']]])
   }
 
+  tage('test-reponame') {
+  def repName = checkout(scm).repoName
+            sh "echo 'Repository Name is: ${repName}'"
+            println repName
+}
   stage('test') {
   sh 'echo $my_home'
     sh 'env > env.txt'
 sh 'cat env.txt'
  sh 'echo $JOB_BASE_NAME'
+   sh 'echo $BRANCH_NAME'
+   sh 'echo $GIT_COMMIT'
   }
   
   stage('job-name'){
        echo "${env.JOB_NAME}"
+    echo "${env.BRANCH_NAME}"
+    echo "${env.GIT_COMMIT}"
   }
 stage('test-new') {
            echo "Running ${env.JOB_NAME} on ${env.JENKINS_URL}"
