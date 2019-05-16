@@ -8,7 +8,6 @@ try {
 
  stage('checkout') {
     cleanWs()
-    checkout scm  
   }
    stage("GIT INFO"){
      sh "git rev-parse --short HEAD > .git/commit-id"                        
