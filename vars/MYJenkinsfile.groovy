@@ -8,6 +8,7 @@ try {
 
  stage('checkout') {
     cleanWs()
+    checkout scm
   }
    stage("GIT INFO"){
 
