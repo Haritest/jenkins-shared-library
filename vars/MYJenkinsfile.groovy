@@ -25,6 +25,7 @@ ansiColor('xterm') {
 
   stage('test-reponame') {
  
+    sh 'cat $determineRepoName'
 }
   stage('test') {
   sh 'echo $my_home'
