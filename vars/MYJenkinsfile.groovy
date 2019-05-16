@@ -12,15 +12,17 @@ try {
         String ANSI_BOLD = "\u001B[1m"
         String ANSI_RED = "\u001B[31m"
         String ANSI_YELLOW = "\u001B[33m"
+  
+    String determineRepoName() {
+    return scm.getUserRemoteConfigs()[0].getUrl().tokenize('/').last().split("\\.")[0]
+}
 
 ansiColor('xterm') {
   stage('checkout') {
     cleanWs()
     checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/Haritest/testpro']]])
   
-   String determineRepoName() {
-    return scm.getUserRemoteConfigs()[0].getUrl().tokenize('/').last().split("\\.")[0]
-}
+ 
   }
 
   stage('test-reponame') {
