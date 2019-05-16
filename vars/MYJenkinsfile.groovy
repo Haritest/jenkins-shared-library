@@ -2,9 +2,7 @@
 
 def call() {
   
-  String determineRepoName() {
-    return scm.getUserRemoteConfigs()[0].getUrl().tokenize('/').last().split("\\.")[0]
-}
+ 
   
 node ('master') {
 
@@ -19,6 +17,10 @@ ansiColor('xterm') {
   stage('checkout') {
     cleanWs()
     checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/Haritest/testpro']]])
+  
+   String determineRepoName() {
+    return scm.getUserRemoteConfigs()[0].getUrl().tokenize('/').last().split("\\.")[0]
+}
   }
 
   stage('test-reponame') {
