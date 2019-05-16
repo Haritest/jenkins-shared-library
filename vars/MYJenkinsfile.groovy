@@ -19,7 +19,7 @@ try {
     
   }
    stage("GIT INFO"){
-
+   sh 'echo $commit_hash'
 
 }
 }
