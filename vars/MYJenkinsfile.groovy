@@ -21,6 +21,7 @@ ansiColor('xterm') {
   sh 'echo $my_home'
     sh 'env > env.txt'
 sh 'cat env.txt'
+ sh 'echo $JOB_BASE_NAME'
   }
 
   stage('shellscript'){
