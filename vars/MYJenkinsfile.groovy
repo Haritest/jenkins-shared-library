@@ -2,6 +2,10 @@
 
 def call() {
   
+  String determineRepoName() {
+    return scm.getUserRemoteConfigs()[0].getUrl().tokenize('/').last().split("\\.")[0]
+}
+  
 node ('master') {
 
 try {
@@ -18,9 +22,7 @@ ansiColor('xterm') {
   }
 
   stage('test-reponame') {
-  def repName = checkout(scm).repoName
-            sh "echo 'Repository Name is: ${repName}'"
-            println repName
+ 
 }
   stage('test') {
   sh 'echo $my_home'
