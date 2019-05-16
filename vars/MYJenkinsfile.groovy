@@ -17,7 +17,7 @@ ansiColor('xterm') {
     checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/Haritest/testpro']]])
   }
 
-  tage('test-reponame') {
+  stage('test-reponame') {
   def repName = checkout(scm).repoName
             sh "echo 'Repository Name is: ${repName}'"
             println repName
