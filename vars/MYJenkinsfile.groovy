@@ -14,7 +14,7 @@ try {
 ansiColor('xterm') {
   stage('checkout') {
     cleanWs()
-    checkout scm
+    checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/Haritest/testpro']]])
   }
 
   stage('test') {
