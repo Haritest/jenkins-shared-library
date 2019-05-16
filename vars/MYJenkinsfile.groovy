@@ -24,9 +24,12 @@ sh 'cat env.txt'
  sh 'echo $JOB_BASE_NAME'
   }
 
-  stage('shellscript'){
+stage('test-new') {
     sh 'echo ${env.BUILD_ID}'
     sh 'echo ${env.JOB_BASE_NAME}'
+  }  
+  
+  stage('shellscript'){
    sh 'ansible-vault view passwd.yml --vault-password-file=secrets'
   }
 
