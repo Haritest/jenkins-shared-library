@@ -23,7 +23,10 @@ ansiColor('xterm') {
 sh 'cat env.txt'
  sh 'echo $JOB_BASE_NAME'
   }
-
+  
+  stage('job-name'){
+       echo "${env.JOB_NAME}"
+  }
 stage('test-new') {
            echo "Running ${env.JOB_NAME} on ${env.JENKINS_URL}"
   }  
