@@ -1,11 +1,7 @@
-#!groovy
 def call(body) {
 body()
-
-node ('master') {
- 
+node ('master') { 
 try {
-
         String ANSI_GREEN = "\u001B[32m"
         String ANSI_NORMAL = "\u001B[0m"
         String ANSI_BOLD = "\u001B[1m"
@@ -38,9 +34,7 @@ sh 'cat env.txt'
         playbook: '/home/hari/ansible/testpro/testdir.yml',
         extras: '--vault-id /home/hari/ansible/testpro/secrets',
         colorized: true)
-
 }
-
 }
 }
 catch (err) {
