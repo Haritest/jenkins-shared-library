@@ -1,7 +1,5 @@
-#!/usr/bin/env groovy
-
-def call() {
-
+def call(body) {
+body()
 node ('master') {
 
 try {
