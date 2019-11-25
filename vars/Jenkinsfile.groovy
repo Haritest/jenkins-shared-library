@@ -1,4 +1,6 @@
 #!groovy
+def call(body) {
+body()
 
 node ('master') {
  
@@ -46,3 +48,4 @@ catch (err) {
         throw err
 	}
 }
+}	
